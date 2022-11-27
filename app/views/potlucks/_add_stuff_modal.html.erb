@@ -1,0 +1,22 @@
+ <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add some stuff</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [potluck, Stuff.new] do |f| %>
+          <%= f.input :emoji %>
+          <%= f.input :name %>
+          <%= f.input :quantity %>
+          <% if owner.present? %>
+            <%= f.input :user_id, input_html: {value: owner}, as: :hidden %> 
+          <% end %>
+          <div class="d-flex gap-3">
+            <%= f.button :submit, 'Add that stuff', class:"btn btn-primary" %>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>

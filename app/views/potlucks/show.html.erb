@@ -10,7 +10,7 @@
           </li>
         <% end %>
         <li class="list-group-item d-flex gap-3 align-items-center justify-content-between">
-          <%= link_to "#", class: 'text-decoration-none' do %>
+          <%= link_to "#", class: 'text-decoration-none', data: { 'bs-toggle': "modal", 'bs-target': "#addStuffNotOwned"} do %>
             <span><i class="fas fa-plus"></i> Add something to bring</span>
           <% end %>
         </li>
@@ -27,7 +27,7 @@
           </li>  
         <% end %>
         <li class="list-group-item d-flex gap-3 align-items-center justify-content-between">
-          <%= link_to "#", class: 'text-decoration-none' do %>
+          <%= link_to "#", class: 'text-decoration-none', data: { 'bs-toggle': "modal", 'bs-target': "#addStuffOwned"} do %>
             <span><i class="fas fa-plus"></i> Add something you bring</span>
           <% end %>
         </li>
@@ -35,4 +35,11 @@
     </div>
 
     <%= link_to "Back", potlucks_path, class: 'btn btn-primary my-5' %>
+</div>
+<div class="modal fade" id="addStuffNotOwned" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <%= render 'add_stuff_modal', owner: nil, potluck: @potluck %>
+</div>
+
+<div class="modal fade" id="addStuffOwned" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <%= render 'add_stuff_modal', owner: current_user.id, potluck: @potluck %>
 </div>
