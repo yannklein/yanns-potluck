@@ -1,4 +1,4 @@
-class PotluckController < ApplicationController
+class PotlucksController < ApplicationController
   before_action :set_potluck, only: [:show]
 
   def index

@@ -1,8 +1,0 @@
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title"><%= potluck.name %></h5>
-    <h6 class="card-subtitle mb-2 text-muted">📆<%= potluck.date.to_formatted_s(:long) %></h6>
-    <p class="card-text">📍<%= potluck.location %></p>
-    <%= link_to "Details", potluck_path(potluck), class: "card-link" %>
-  </div>
-</div>

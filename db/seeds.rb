@@ -14,7 +14,7 @@ puts "Done"
 puts "Create one potluck"
 potluck = Potluck.create!(
   name: "Cheese party",
-  date: Date.new(2022, 11, 27),
+  date: DateTime.new(2022, 11, 27, 19, 00),
   location: "東京都目黒区中町1-8-25 201号",
   user: yann
 )
