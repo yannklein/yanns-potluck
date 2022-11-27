@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Your potlucks</h1>
+  <div class="row">
+    <%= @potlucks.each do |potluck| %>
+      <div class="col-12 col-md-4 col-xl-3">
+        <%= render 'potluck_card', potluck: potluck %>
+      </div>
+    <% end %>
+  </div>
+</div>
