@@ -1,0 +1,38 @@
+<div class="container">
+  <h1 class="my-5 text-center"><%= @potluck.name %></h1>
+    <div class="mb-3">
+      <h2>Stuff to bring</h2>
+      <ul class="list-group">
+        <% @potluck.stuffs_not_owned.each do |stuff| %>
+          <li class="list-group-item d-flex gap-3 align-items-center justify-content-between">
+            <span><%= stuff.emoji %> <%= stuff.name %></span>
+            <%= link_to "I bring it!", "#", class: 'btn btn-outline-primary' %>
+          </li>
+        <% end %>
+        <li class="list-group-item d-flex gap-3 align-items-center justify-content-between">
+          <%= link_to "#", class: 'text-decoration-none' do %>
+            <span><i class="fas fa-plus"></i> Add something to bring</span>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+
+    <div class="mb-3">
+      <h2>Stuff brought by someone</h2>
+      <ul class="list-group">
+        <% @potluck.stuffs_owned.each do |stuff| %>
+          <li class='list-group-item d-flex gap-3 align-items-center justify-content-between'>
+            <span><%= stuff.emoji %> <%= stuff.name %></span>
+            <span>🧍 <%= stuff.user.name %> </span>
+          </li>  
+        <% end %>
+        <li class="list-group-item d-flex gap-3 align-items-center justify-content-between">
+          <%= link_to "#", class: 'text-decoration-none' do %>
+            <span><i class="fas fa-plus"></i> Add something you bring</span>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+
+    <%= link_to "Back", potlucks_path, class: 'btn btn-primary my-5' %>
+</div>
