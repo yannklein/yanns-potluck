@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :potlucks, only: [:index, :show] do
     resources :stuffs, only: [:create]
   end
+  resources :stuffs, only: [:update]
 end

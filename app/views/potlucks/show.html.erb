@@ -6,7 +6,10 @@
         <% @potluck.stuffs_not_owned.each do |stuff| %>
           <li class="list-group-item d-flex gap-3 align-items-center justify-content-between">
             <span><%= stuff.emoji %> <%= stuff.name %></span>
-            <%= link_to "I bring it!", "#", class: 'btn btn-outline-primary' %>
+            <%= simple_form_for stuff do |f| %>
+              <%= f.input :user_id, input_html: {value: current_user.id}, as: :hidden %> 
+              <%= f.button :submit, "I bring it!", class: 'btn btn-outline-primary' %>
+            <% end %>
           </li>
         <% end %>
         <li class="list-group-item d-flex gap-3 align-items-center justify-content-between">
