@@ -10,10 +10,15 @@
       <% @potluck.stuffs_not_owned.each do |stuff| %>
         <li class="list-group-item d-flex gap-3 align-items-center justify-content-between">
           <span><%= stuff.emoji %> <%= stuff.name %></span>
-          <%= simple_form_for stuff do |f| %>
-            <%= f.input :user_id, input_html: {value: current_user.id}, as: :hidden %> 
-            <%= f.button :submit, "I bring it!", class: 'btn btn-outline-primary' %>
-          <% end %>
+          <div class="d-flex  align-items-center gap-3">
+            <%= simple_form_for stuff do |f| %>
+              <%= f.input :user_id, input_html: {value: current_user.id}, wrapper_html: {style: 'margin-bottom: 0 !important'}, as: :hidden %> 
+              <%= f.button :submit, "I bring it!", class: 'btn btn-outline-primary' %>
+            <% end %>
+            <%= link_to stuff_path(stuff), data: {turbo_method: :delete, turbo_confirm: "No more #{stuff.name.downcase}?"} do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
+          </div>
         </li>
       <% end %>
       <li class="list-group-item d-flex gap-3 align-items-center justify-content-between">
@@ -30,7 +35,12 @@
       <% @potluck.stuffs_owned.each do |stuff| %>
         <li class='list-group-item d-flex gap-3 align-items-center justify-content-between'>
           <span><%= stuff.emoji %> <%= stuff.name %></span>
-          <span>🧍 <%= stuff.user.name %> </span>
+          <div class="d-flex  align-items-center gap-3">
+            <span>🧍 <%= stuff.user.name %> </span>
+            <%= link_to stuff_path(stuff), data: {turbo_method: :delete, turbo_confirm: "No more #{stuff.name.downcase}?"} do %>
+                <i class="fa-solid fa-trash"></i>
+            <% end %>
+          </div>
         </li>  
       <% end %>
       <li class="list-group-item d-flex gap-3 align-items-center justify-content-between">

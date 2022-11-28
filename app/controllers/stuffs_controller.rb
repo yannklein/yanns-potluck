@@ -1,6 +1,6 @@
 class StuffsController < ApplicationController
   before_action :set_potluck, only: [:create]
-  before_action :set_stuff, only: [:update]
+  before_action :set_stuff, only: [:update, :destroy]
   def create
     @stuff = Stuff.new(stuff_params)
     @stuff.potluck = @potluck
@@ -17,6 +17,11 @@ class StuffsController < ApplicationController
     else
       render 'potluck/show'
     end
+  end
+
+  def destroy
+    @stuff.destroy
+    redirect_to potluck_path(@stuff.potluck)
   end
 
   private
