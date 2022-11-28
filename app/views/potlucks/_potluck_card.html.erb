@@ -1,8 +1,15 @@
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h3 class="card-title mb-3"><%= potluck.name %></h3>
-    <p class="card-text m-0">📆<%= potluck.date.to_formatted_s(:long) %></p>
-    <p class="card-text m-0 mb-3">📍<%= potluck.location %></p>
-    <%= link_to "Bring stuffs", potluck_path(potluck), class: "card-link btn btn-primary" %>
+    <p class="card-text m-0">Organised by <%= potluck.user.name %></p>
+    <p class="card-text m-0 mb-3">📆<%= potluck.date.to_formatted_s(:long) %></p>
+    <%= link_to "https://maps.google.com/?q=#{potluck.location}", target: "_blank", class:"text-decoration-none text-black" do %>
+      <p class="card-text m-0">📍<%= potluck.location %></p>
+      <p class="card-text m-0 mb-3">🏠<%= potluck.apt_number %></p>
+    <% end %>
+    <div class="d-flex gap-3">
+      <%= link_to "Bring stuffs", potluck_path(potluck), class: "card-link btn btn-primary" %>
+      <%= render 'potlucks/share_button', potluck: potluck %>
+    </div>
   </div>
 </div>

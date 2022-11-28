@@ -1,0 +1,15 @@
+<div data-controller="clipboard" data-clipboard-success-content="Copied!">
+  <input 
+    class="d-none"
+    value="<%= potluck_url(potluck)%>"
+    data-clipboard-target="source" 
+  />
+  <button 
+  class="btn btn-secondary"
+    type="button" 
+    data-action="clipboard#copy" 
+    data-clipboard-target="button"
+    >
+    <i class="fa-solid fa-link"></i> Share
+  </button>
+</div>

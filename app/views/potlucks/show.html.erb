@@ -1,44 +1,49 @@
 <div class="container">
-  <h1 class="my-5 text-center"><%= @potluck.name %></h1>
-    <div class="mb-3">
-      <h2>Stuff to bring</h2>
-      <ul class="list-group">
-        <% @potluck.stuffs_not_owned.each do |stuff| %>
-          <li class="list-group-item d-flex gap-3 align-items-center justify-content-between">
-            <span><%= stuff.emoji %> <%= stuff.name %></span>
-            <%= simple_form_for stuff do |f| %>
-              <%= f.input :user_id, input_html: {value: current_user.id}, as: :hidden %> 
-              <%= f.button :submit, "I bring it!", class: 'btn btn-outline-primary' %>
-            <% end %>
-          </li>
-        <% end %>
+  <div class="my-5 text-center">
+    <h1><%= @potluck.name %></h1>
+    <%= render 'potlucks/share_button', potluck: @potluck %>
+  </div>
+
+  <div class="mb-3">
+    <h2>Stuff to bring</h2>
+    <ul class="list-group">
+      <% @potluck.stuffs_not_owned.each do |stuff| %>
         <li class="list-group-item d-flex gap-3 align-items-center justify-content-between">
-          <%= link_to "#", class: 'text-decoration-none', data: { 'bs-toggle': "modal", 'bs-target': "#addStuffNotOwned"} do %>
-            <span><i class="fas fa-plus"></i> Add something to bring</span>
+          <span><%= stuff.emoji %> <%= stuff.name %></span>
+          <%= simple_form_for stuff do |f| %>
+            <%= f.input :user_id, input_html: {value: current_user.id}, as: :hidden %> 
+            <%= f.button :submit, "I bring it!", class: 'btn btn-outline-primary' %>
           <% end %>
         </li>
-      </ul>
-    </div>
-
-    <div class="mb-3">
-      <h2>Stuff brought by someone</h2>
-      <ul class="list-group">
-        <% @potluck.stuffs_owned.each do |stuff| %>
-          <li class='list-group-item d-flex gap-3 align-items-center justify-content-between'>
-            <span><%= stuff.emoji %> <%= stuff.name %></span>
-            <span>🧍 <%= stuff.user.name %> </span>
-          </li>  
+      <% end %>
+      <li class="list-group-item d-flex gap-3 align-items-center justify-content-between">
+        <%= link_to "#", class: 'text-decoration-none', data: { 'bs-toggle': "modal", 'bs-target': "#addStuffNotOwned"} do %>
+          <span><i class="fas fa-plus"></i> Add something to bring</span>
         <% end %>
-        <li class="list-group-item d-flex gap-3 align-items-center justify-content-between">
-          <%= link_to "#", class: 'text-decoration-none', data: { 'bs-toggle': "modal", 'bs-target': "#addStuffOwned"} do %>
-            <span><i class="fas fa-plus"></i> Add something you bring</span>
-          <% end %>
-        </li>
-      </ul>
-    </div>
+      </li>
+    </ul>
+  </div>
 
-    <%= link_to "Back", potlucks_path, class: 'btn btn-primary my-5' %>
+  <div class="mb-3">
+    <h2>Stuff brought by someone</h2>
+    <ul class="list-group">
+      <% @potluck.stuffs_owned.each do |stuff| %>
+        <li class='list-group-item d-flex gap-3 align-items-center justify-content-between'>
+          <span><%= stuff.emoji %> <%= stuff.name %></span>
+          <span>🧍 <%= stuff.user.name %> </span>
+        </li>  
+      <% end %>
+      <li class="list-group-item d-flex gap-3 align-items-center justify-content-between">
+        <%= link_to "#", class: 'text-decoration-none', data: { 'bs-toggle': "modal", 'bs-target': "#addStuffOwned"} do %>
+          <span><i class="fas fa-plus"></i> Add something you bring</span>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+
+  <%= link_to "Back", potlucks_path, class: 'btn btn-primary my-5' %>
 </div>
+
 <div class="modal fade" id="addStuffNotOwned" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <%= render 'add_stuff_modal', owner: nil, potluck: @potluck %>
 </div>
