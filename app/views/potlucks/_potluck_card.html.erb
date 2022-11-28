@@ -1,4 +1,4 @@
-<div class="card" style="width: 18rem;">
+<div class="card w-100">
   <div class="card-body">
     <h3 class="card-title mb-3"><%= potluck.name %></h3>
     <p class="card-text m-0">Organised by <%= potluck.user.name %></p>
@@ -7,9 +7,12 @@
       <p class="card-text m-0">📍<%= potluck.location %></p>
       <p class="card-text m-0 mb-3">🏠<%= potluck.apt_number %></p>
     <% end %>
-    <div class="d-flex gap-3">
+    <div class="d-flex gap-3 align-items-center">
       <%= link_to "Bring stuffs", potluck_path(potluck), class: "card-link btn btn-primary" %>
       <%= render 'potlucks/share_button', potluck: potluck %>
+      <%= link_to potluck_path(potluck), data: {turbo_method: :delete, turbo_confirm: "Cancel #{potluck.name.downcase}?"} do %>
+        <i class="fa-solid fa-trash"></i>
+      <% end %>
     </div>
   </div>
 </div>

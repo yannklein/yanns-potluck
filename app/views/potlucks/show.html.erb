@@ -38,7 +38,7 @@
           <div class="d-flex  align-items-center gap-3">
             <span>🧍 <%= stuff.user.name %> </span>
             <%= link_to stuff_path(stuff), data: {turbo_method: :delete, turbo_confirm: "No more #{stuff.name.downcase}?"} do %>
-                <i class="fa-solid fa-trash"></i>
+              <i class="fa-solid fa-trash"></i>
             <% end %>
           </div>
         </li>  
